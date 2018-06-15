@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{%- block content -%}
+<div>
+  <h2>Jobs:</h2>
+  {% if items %}
+  <div>
+    <label>Max Number of Jobs to Show Per Page:</label>
+    <select id="page_size" name="page_size">
+      {% for ps in [1, 10, 20, 50, 100] %}
+      <option value="{{ ps }}"
+        {% if ps == page_size %}
+          selected
+        {% endif %}
+      >{{ ps }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <table border=1>
+    <tr>
+      <td>Id</td>
+      <td>Number of Items</td>
+      <td>Start</td>
+      <td>Last Modified</td>
+      <td>Complete</td>
+    </tr>
+    {% for item in items %}
+    <tr>
+      <td><a href="{{ uri_for('job_detail', job_id=item.key.id()) }}">
+          {{ item.key.id() }}</a>
+      </td>
+      <td>{{ item.number_of_items }}</td>
+      <td>{{ item.start_time }}</td>
+      <td>{{ item.modified_time }}</td>
+      <td>{{ item.complete }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  {% if more_results %}
+  <div>
+    <a href="{{ uri_for('jobs', cursor=next_cursor, page_size=page_size)
+}}">Next ></a>
+  </div>
+  {% endif %}
+  {% else %}
+  <div>No securities yet!</div>
+  {% endif %}
+</div>
+
+{%- endblock -%}

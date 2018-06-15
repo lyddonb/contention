@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{%- block content -%}
+<div>
+  <h2>Complete State:</h2>
+  <table border=1>
+    <tr>
+      <td>Id</td>
+      <td>Number of Items</td>
+      <td>Start</td>
+      <td>Last Modified</td>
+      <td>Complete</td>
+    </tr>
+    <tr>
+      <td>{{ complete_state.key.id() }}</td>
+      <td>{{ complete_state.number_of_items }}</td>
+      <td>{{ complete_state.start_time }}</td>
+      <td>{{ complete_state.modified_time }}</td>
+      <td>{{ complete_state.complete }}</td>
+    </tr>
+  </table>
+</div>
+
+<div>
+  <h2>Run State:</h2>
+  <table border=1>
+    <tr>
+      <td>Id</td>
+      <td>Counter</td>
+      <td>Count Map Count</td>
+      <td>Count Map</td>
+      <td>Start</td>
+      <td>Last Modified</td>
+    </tr>
+    <tr>
+      <td>{{ run_state.key.id() }}</td>
+      <td>{{ run_state.counter }}</td>
+      <td>{{ run_state.count_map_count }}</td>
+      <td>
+        {% for key, value in run_state.count_map.iteritems() %}
+        <div>{{ key }} : {{ value }}</div>
+        {% endfor %}
+      </td>
+      <td>{{ run_state.start_time }}</td>
+      <td>{{ run_state.modified_time }}</td>
+    </tr>
+  </table>
+</div>
+
+{%- endblock -%}

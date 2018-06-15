@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{%- block content -%}
+<div>
+  <h2>Run A Job:</h2>
+</div>
+<div>
+	<form action="/" method="post">
+    <select id="number_of_items" name="number_of_items">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="10">10</option>
+      <option value="20">20</option>
+      <option value="30">30</option>
+      <option value="40">40</option>
+      <option value="50">50</option>
+      <option value="100">100</option>
+      <option value="150">150</option>
+      <option value="500">500</option>
+      <option value="1000">1000</option>
+      <option value="5000">5000</option>
+      <option value="10000">10000</option>
+    </select>
+    <div>
+      <input type="submit" id="securities" name="securities" value="Run Job" >
+    </div>
+  </form>
+</div>
+
+{%- endblock -%}
